@@ -4,7 +4,7 @@ import Card from './Components/Card/index.js';
 export default function main() {
   const domMain = document.querySelector('#main');
 
-  // Memory store
+  // Memory storage
   document.store = {};
 
   // Custom elements
