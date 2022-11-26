@@ -1,0 +1,44 @@
+{
+  "name": "carslist",
+  "version": "1.0.0",
+  "description": "",
+  "engines": {
+    "node": ">=16"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.mjs",
+    "lint": "eslint --ext .js,.mjs .",
+    "lint:fix": "eslint --fix --ext .js,.mjs .",
+    "test": "jest",
+    "html-audit": "npm audit --json | npm-audit-html --output audit/html-audit-report.html",
+    "checkupdates": "npx ncu"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fcroce/carslist.git"
+  },
+  "author": "Fabio Croce",
+  "bugs": {
+    "url": "https://github.com/fcroce/carslist/issues"
+  },
+  "homepage": "https://fcroce.github.io/carslist/",
+  "devDependencies": {
+    "@babel/core": "^7.20.2",
+    "@babel/eslint-parser": "^7.19.1",
+    "@babel/preset-env": "^7.20.2",
+    "@jest/globals": "^29.3.1",
+    "babel-jest": "^29.3.1",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-jest": "^27.1.6",
+    "eslint-plugin-prettier": "^4.2.1",
+    "jest": "^29.3.1",
+    "jest-junit": "^15.0.0",
+    "npm-audit-html": "^1.5.0",
+    "npm-check-updates": "^16.4.3",
+    "prettier": "^2.8.0",
+    "prettyjson": "^1.2.5"
+  }
+}

@@ -1,0 +1,16 @@
+# Mac OSX
+.DS_Store
+
+# IDE / Editor
+.idea
+.vscode
+.editorconfig
+
+# Dependency directories
+node_modules/
+
+# Coverage directory used by tools like istanbul
+coverage
+
+#Html Audit
+audit/html-audit-report.html
