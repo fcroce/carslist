@@ -7,7 +7,6 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "node index.mjs",
     "lint": "eslint --ext .js,.mjs .",
     "lint:fix": "eslint --fix --ext .js,.mjs .",
     "test": "jest",
