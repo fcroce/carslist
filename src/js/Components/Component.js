@@ -1,27 +1,48 @@
 export default class Component {
-  constructor(id) {
+  constructor(id, domParent) {
     this.id = id;
+    this.dom = domParent;
   }
 
-  bindAttributes(dom) {
-    this.attributes = dom.attributes;
+  clearDom() {
+    Array.from(this.dom.children).map((child) => {
+      child.remove();
+      delete document.store.elements[child.id];
+    });
+  }
+
+  bindAttributes() {
+    this.attributes = this.dom.attributes;
   }
 
   getParam(name) {
     return this.attributes.getNamedItem(name).value;
   }
 
-  bindEvents(dom) {
-    dom.addEventListener('click', this.click);
+  bindEvents() {
+    this.destroyEvents();
+
+    this.clickEvent = (event) => {
+      this.click(event);
+    };
+    this.dom.addEventListener('click', this.clickEvent);
+  }
+
+  destroyEvents() {
+    this.dom.removeEventListener('click', this.clickEvent);
   }
 
   click() {}
 
-  template() {
-    const dom = document.getElementById(`${this.id}`);
+  rendering() {
+    this.dom = document.getElementById(`${this.id}`);
 
-    this.bindEvents(dom);
+    this.clearDom();
 
-    return dom;
+    this.bindAttributes();
+
+    this.bindEvents();
+
+    return this.dom;
   }
 }

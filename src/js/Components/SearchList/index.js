@@ -1,27 +1,50 @@
 import search from '../../api/search/index.js';
 import Component from '../Component.js';
+import Card from '../Card/index.js';
+import createCustomElement from '../../libs/CreateCustomElement/index.js';
 
 export default class SearchList extends Component {
   constructor(id, domParent) {
-    super(id);
+    super(id, domParent);
 
-    this.dom = domParent.querySelector('search-list');
-
-    this.bindAttributes(this.dom);
-
-    search().then((list) => {
-      document.store.search = list;
-    });
-
-    return this.template();
+    return this.rendering();
   }
 
-  template() {
-    // @TODO: Link Model
-    this.dom.outerHTML = `<div id="${this.id}">
-        <card title="Test 123" />
-    </div>`;
+  async reloadList() {
+    await this.rendering();
+  }
 
-    return super.template();
+  bindEvents() {
+    super.bindEvents();
+
+    this.reloadListEvent = async () => {
+      await this.reloadList();
+    };
+    document.addEventListener('reload-search-list', this.reloadListEvent);
+  }
+
+  destroyEvents() {
+    super.destroyEvents();
+
+    document.removeEventListener('reload-search-list', this.reloadListEvent);
+  }
+
+  async rendering() {
+    super.rendering();
+
+    if (!document.store.search) {
+      document.store.search = await search();
+    }
+
+    let cards = '';
+    document.store.search.availability.map((list) => {
+      cards += `<card title="Test ${list['Vendor']['@Name']}"></card>`; // @TODO: Link Model
+    });
+
+    this.dom.innerHTML = cards;
+
+    await createCustomElement(this.dom, 'card', Card);
+
+    return this.dom;
   }
 }

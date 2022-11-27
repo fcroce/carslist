@@ -1,20 +1,22 @@
+import createCustomElement from './libs/CreateCustomElement/index.js';
 import SearchList from './Components/SearchList/index.js';
-import Card from './Components/Card/index.js';
 
-export default function main() {
+export default async function main() {
   const domMain = document.querySelector('#main');
 
   // Memory storage
-  document.store = {};
+  document.store = {
+    domMain: domMain,
+  };
 
   // Custom elements
-  const elements = {};
+  document.store.elements = {};
 
-  elements['SearchList'] = { id: crypto.randomUUID() };
-  const searchList = new SearchList(elements['SearchList'].id, domMain);
+  await createCustomElement(domMain, 'search-list', SearchList);
 
-  elements['Card'] = { id: crypto.randomUUID() };
-  new Card(elements['Card'].id, searchList);
+  // @TODO - Delete Me - Sort list example
+  // document.store.search.availability.sort((a, b) => -a['Vendor']['@Name'].localeCompare(b['Vendor']['@Name']));
+  // document.dispatchEvent(new Event('reload-search-list'));
 }
 
 window.addEventListener('load', main);

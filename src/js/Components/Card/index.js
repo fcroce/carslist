@@ -2,25 +2,24 @@ import Component from '../Component.js';
 
 export default class Card extends Component {
   constructor(id, domParent) {
-    super(id);
+    super(id, domParent);
 
-    this.dom = domParent.querySelector('card');
-
-    this.bindAttributes(this.dom);
-
-    this.template();
+    this.rendering();
   }
 
-  click() {
-    console.log('click event');
+  click(event) {
+    // @TODO - Do something with this event
+    console.log('click event:', event.target.title);
   }
 
-  template() {
+  rendering() {
+    super.rendering();
+
     // @TODO: Handle data from Model
-    this.dom.outerHTML = `<div id="${this.id}">
+    this.dom.innerHTML = `
         card - ${this.getParam('title')}
-    </div>`;
+    `;
 
-    return super.template();
+    return this.dom;
   }
 }
