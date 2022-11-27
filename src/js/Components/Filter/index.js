@@ -7,11 +7,16 @@ export default class Filter extends Component {
     this.rendering();
   }
 
+  click() {
+    // @TODO - Do something with this event
+    console.log('click event:', this.dom);
+  }
+
   rendering() {
     super.rendering();
 
     this.dom.innerHTML = `
-      <div class="filter">TODO - Filters</div>
+      <div class="filter">Filters</div>
     `;
 
     return this.dom;

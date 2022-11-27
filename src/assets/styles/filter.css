@@ -3,4 +3,5 @@
   background-color: var(--color-purple-dark);
   color: var(--color-blue-lighter);
   border-radius: 5px;
+  cursor: pointer;
 }

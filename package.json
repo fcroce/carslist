@@ -7,12 +7,14 @@
   },
   "main": "index.js",
   "scripts": {
+    "stylelint": "stylelint '**/*.css'",
     "stylelint:fix": "stylelint '**/*.css' --fix",
     "lint": "eslint --ext .js,.mjs .",
     "lint:fix": "eslint --fix --ext .js,.mjs .; npm run stylelint:fix",
     "test": "jest",
     "html-audit": "npm audit --json | npm-audit-html --output audit/html-audit-report.html",
-    "checkupdates": "npx ncu"
+    "checkupdates": "npx ncu",
+    "start": "http-server -o --cors index.html"
   },
   "repository": {
     "type": "git",
@@ -43,5 +45,8 @@
     "prettyjson": "^1.2.5",
     "stylelint": "^14.15.0",
     "stylelint-config-standard": "^29.0.0"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
   }
 }
