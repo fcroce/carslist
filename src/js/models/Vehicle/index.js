@@ -1,4 +1,5 @@
 import VehicleModel from '../VehicleModel';
+import VehiclePicture from '../VehiclePicture';
 
 const TransmissionTypes = ['automatic'];
 
@@ -30,10 +31,10 @@ export default class Vehicle {
     this.transmissionType = TransmissionTypes.includes(transmissionType) ? transmissionType : 'Unknown';
     this.fuelType = FuelTypes.includes(fuelType) ? fuelType : 'Unknown';
     this.driveType = DriveTypes.includes(driveType) ? driveType : 'Unknown';
-    this.passengers = passengers ? parseInt(passengers, 10) : 0;
+    this.passengers = passengers ?? 'Unknown';
     this.baggageQty = baggageQty ? parseInt(baggageQty, 10) : 0;
     this.doors = doors ? parseInt(doors, 10) : 0;
     this.model = new VehicleModel(model?.['@Name']);
-    this.pictureURL = pictureURL ?? '';
+    this.pictureURL = new VehiclePicture(pictureURL);
   }
 }

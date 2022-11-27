@@ -15,6 +15,10 @@ export default class Component {
     this.attributes = this.dom.attributes;
   }
 
+  bindClasses() {
+    this.classes = this.dom.classList;
+  }
+
   getParam(name) {
     return this.attributes.getNamedItem(name).value;
   }
@@ -40,6 +44,8 @@ export default class Component {
     this.clearDom();
 
     this.bindAttributes();
+
+    this.bindClasses();
 
     this.bindEvents();
 

@@ -15,7 +15,7 @@ export default async function main() {
   await createCustomElement(domMain, 'search-list', SearchList);
 
   // @TODO - Delete Me - Sort list example
-  // document.store.search.vehicles.availability.sort((a, b) => -a['Vendor']['@Name'].localeCompare(b['Vendor']['@Name']));
+  // document.store.search.vehicles.availability.sort((a, b) => -a.vendor.name.localeCompare(b.vendor.name));
   // document.dispatchEvent(new Event('reload-search-list'));
 }
 
