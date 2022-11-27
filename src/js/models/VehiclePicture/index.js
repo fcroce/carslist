@@ -1,23 +1,23 @@
 export default class VehiclePicture {
-    constructor(pictureURL) {
-        const url = pictureURL ? new URL(pictureURL) : null;
+  constructor(pictureURL) {
+    const url = pictureURL ? new URL(pictureURL) : null;
 
-        if (!url) {
-            this.pictureURL = '#';
-        }
-
-        this.url = `${url.origin}/${url.pathname}?auto=format`;
+    if (!url) {
+      this.pictureURL = '#';
     }
 
-    resized(w, h) {
-        if (w) {
-            this.url += `&w=${w}`;
-        }
+    this.url = `${url.origin}/${url.pathname}?auto=format`;
+  }
 
-        if (h) {
-            this.url += `&h=${h}`;
-        }
-
-        return this;
+  resized(w, h) {
+    if (w) {
+      this.url += `&w=${w}`;
     }
+
+    if (h) {
+      this.url += `&h=${h}`;
+    }
+
+    return this;
+  }
 }

@@ -57,7 +57,7 @@ export default class SearchList extends Component {
       vendorsDOM += `<vendor code="${list.vendor.code}" title="${list.vendor.name}" vehicles="${idx}" class="vendor"></vendor>`;
     });
 
-    template = template.replace('<div class="vendors"></div>', `<div class="vendors">${vendorsDOM}</div>`);
+    template = template.replace('<div class="vendors"></div>', `<div class="vendors loaded">${vendorsDOM}</div>`);
 
     this.dom.innerHTML = template;
 

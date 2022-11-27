@@ -9,11 +9,6 @@ export default class Vendor extends Component {
     this.rendering();
   }
 
-  click(event) {
-    // @TODO - Do something with this event
-    console.log('click event:', event.target.title);
-  }
-
   async rendering() {
     super.rendering();
 
@@ -37,7 +32,7 @@ export default class Vendor extends Component {
       ></vehicle>`;
     });
 
-    template = template.replace('<div class="vehicles"></div>', `<div class="vehicles">${vehiclesDOM}</div>`)
+    template = template.replace('<div class="vehicles"></div>', `<div class="vehicles">${vehiclesDOM}</div>`);
 
     this.dom.innerHTML = template;
 

@@ -2,6 +2,7 @@ export default class Component {
   constructor(id, domParent) {
     this.id = id;
     this.dom = domParent;
+    this.styleId = null;
   }
 
   clearDom() {
