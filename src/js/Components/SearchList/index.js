@@ -37,8 +37,8 @@ export default class SearchList extends Component {
     }
 
     let cards = '';
-    document.store.search.availability.map((list) => {
-      cards += `<card title="Test ${list['Vendor']['@Name']}"></card>`; // @TODO: Link Model
+    document.store.search.vehicles.availability.map((list) => {
+      cards += `<card code="${list.vendor.code}" title="${list.vendor.name}"></card>`;
     });
 
     this.dom.innerHTML = cards;

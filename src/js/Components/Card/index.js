@@ -15,7 +15,7 @@ export default class Card extends Component {
   rendering() {
     super.rendering();
 
-    // @TODO: Handle data from Model
+    // @TODO: Handle data from params
     this.dom.innerHTML = `
         card - ${this.getParam('title')}
     `;
