@@ -40,7 +40,9 @@ export default class SearchList extends Component {
   }
 
   async rendering() {
-    super.rendering();
+    if (!super.rendering()) {
+      return false;
+    }
 
     let template = `
       <div class="search-header title-1-bld">Search Results</div>

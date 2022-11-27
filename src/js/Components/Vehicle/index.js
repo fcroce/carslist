@@ -8,12 +8,18 @@ export default class Vehicle extends Component {
   }
 
   click() {
-    // @TODO - Do something with this event
-    console.log('click event:', this.dom.attributes.getNamedItem('code'));
+    document.router.push('/vehicle', [
+      {
+        name: 'code',
+        value: this.dom.attributes.getNamedItem('code').value,
+      },
+    ]);
   }
 
   rendering() {
-    super.rendering();
+    if (!super.rendering()) {
+      return false;
+    }
 
     const vehicleIdx = this.getParam('vehicle');
     const vehicle = document.store.search.vehicles.availability[vehicleIdx];
@@ -32,7 +38,7 @@ export default class Vehicle extends Component {
           />
 
           <div class="vehicle-details-container" code-context="${vehicle.info.codeContext}">
-            <div class="vehicle-details">
+            <div class="vehicle-features">
                 ${vehicle.info.airCondition ? '<p class="veh-air-condition"><span>✔</span> Air Condition</p>' : ''}
                 <p class="veh-transmission-type">Transmission Type: <span>${vehicle.info.transmissionType}</span></p>
                 <p class="veh-fuel-type">Fuel Type: <span>${vehicle.info.fuelType}</span></p>

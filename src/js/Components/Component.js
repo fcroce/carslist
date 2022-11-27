@@ -2,7 +2,6 @@ export default class Component {
   constructor(id, domParent) {
     this.id = id;
     this.dom = domParent;
-    this.styleId = null;
   }
 
   clearDom() {
@@ -49,6 +48,11 @@ export default class Component {
 
   rendering() {
     this.dom = document.getElementById(`${this.id}`);
+
+    if (!this.dom) {
+      console.info(`Element ${this.id} not found - Skipping rendering`);
+      return false;
+    }
 
     this.clearDom();
 

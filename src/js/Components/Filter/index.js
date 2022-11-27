@@ -10,10 +10,13 @@ export default class Filter extends Component {
   click() {
     // @TODO - Do something with this event
     console.log('click event:', this.dom);
+    alert('TODO');
   }
 
   rendering() {
-    super.rendering();
+    if (!super.rendering()) {
+      return false;
+    }
 
     this.dom.innerHTML = `
       <div class="filter">Filters</div>

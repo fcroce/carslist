@@ -14,7 +14,9 @@ export default class Sort extends Component {
   }
 
   rendering() {
-    super.rendering();
+    if (!super.rendering()) {
+      return false;
+    }
 
     this.dom.innerHTML = `
             <select name="sort" class="vehicle-sort">

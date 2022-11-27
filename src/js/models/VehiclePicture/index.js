@@ -1,5 +1,10 @@
 export default class VehiclePicture {
   constructor(pictureURL) {
+    this.url = '';
+    this.generateUrl(pictureURL);
+  }
+
+  generateUrl(pictureURL) {
     const url = pictureURL ? new URL(pictureURL) : null;
 
     if (!url) {
@@ -7,6 +12,8 @@ export default class VehiclePicture {
     }
 
     this.url = `${url.origin}/${url.pathname}?auto=format`;
+
+    return this;
   }
 
   resized(w, h) {
