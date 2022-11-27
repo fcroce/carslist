@@ -9,8 +9,11 @@
 # Dependency directories
 node_modules/
 
+# Rollup bundles
+build/
+
 # Coverage directory used by tools like istanbul
-coverage
+coverage/
 
 #Html Audit
 audit/html-audit-report.html

@@ -1,12 +1,14 @@
 # carslist
 
 ## Start the server (Node >= 16)
-`npm run start`
+`npm run build && npm run start`
 
 ## Docker
 `docker run --rm -p 8080:8080 $(docker build -q --rm .)`
 
 ### NPM available scripts
+* build
+  * Build production bundle
 * start
   * Starts the server
 * stylelint

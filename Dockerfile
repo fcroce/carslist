@@ -7,6 +7,7 @@ RUN apk add --no-cache tini
 COPY . .
 
 RUN npm ci
+RUN npm run build
 
 EXPOSE 8080
 
