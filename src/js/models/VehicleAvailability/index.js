@@ -1,5 +1,5 @@
 import Vehicle from '../Vehicle/index.js';
-import TotalCharge from '../TotalCharge';
+import TotalCharge from '../TotalCharge/index.js';
 
 export default class VehicleAvailability {
   constructor({ status, info, totalCharge }) {

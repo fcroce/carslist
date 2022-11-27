@@ -1,5 +1,5 @@
-import VehicleModel from '../VehicleModel';
-import VehiclePicture from '../VehiclePicture';
+import VehicleModel from '../VehicleModel/index.js';
+import VehiclePicture from '../VehiclePicture/index.js';
 
 const TransmissionTypes = ['automatic'];
 

@@ -8,6 +8,7 @@ export default class SearchList extends Component {
     super(id, domParent);
 
     this.fetchSearchList().then(() => {
+      document.store.search.vehicles.availability.sort((a, b) => -a.vendor.name.localeCompare(b.vendor.name));
       return this.rendering();
     });
   }
