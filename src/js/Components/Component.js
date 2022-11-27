@@ -31,13 +31,21 @@ export default class Component {
       this.click(event);
     };
     this.dom.addEventListener('click', this.clickEvent);
+
+    this.changeEvent = (event) => {
+      this.change(event);
+    };
+    this.dom.addEventListener('change', this.changeEvent);
   }
 
   destroyEvents() {
     this.dom.removeEventListener('click', this.clickEvent);
+    this.dom.removeEventListener('change', this.changeEvent);
   }
 
   click() {}
+
+  change() {}
 
   rendering() {
     this.dom = document.getElementById(`${this.id}`);

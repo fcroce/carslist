@@ -1,0 +1,6 @@
+.vehicle-sort {
+  padding: 0.5rem 1rem;
+  background-color: var(--color-purple-dark);
+  color: var(--color-blue-lighter);
+  border-radius: 5px;
+}

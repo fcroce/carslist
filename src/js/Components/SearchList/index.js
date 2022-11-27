@@ -1,14 +1,17 @@
 import search from '../../api/search/index.js';
 import Component from '../Component.js';
-import Vendor from '../Vendor/index.js';
+import Sort from '../Sort/index.js';
+import Filter from '../Filter/index.js';
+import Vehicle from '../Vehicle/index.js';
 import createCustomElement from '../../libs/CreateCustomElement/index.js';
+import sortAvailability from '../../libs/SortAvailability/index.js';
 
 export default class SearchList extends Component {
   constructor(id, domParent) {
     super(id, domParent);
 
     this.fetchSearchList().then(() => {
-      document.store.search.vehicles.availability.sort((a, b) => -a.vendor.name.localeCompare(b.vendor.name));
+      sortAvailability();
       return this.rendering();
     });
   }
@@ -40,29 +43,63 @@ export default class SearchList extends Component {
     super.rendering();
 
     let template = `
-      <div class="search-header">Search Results</div>
-      <div class="search-pickup">
-        <div>${document.store.search.rental.pickUpLocation.name}</div>
-        <div>${document.store.search.rental.pickupDateTime}</div>
-      </div>
-      <div class="search-return">
-        <div>${document.store.search.rental.returnLocation.name}</div>
-        <div>${document.store.search.rental.returnDateTime}</div>
+      <div class="search-header title-1-bld">Search Results</div>
+
+      <div class="search-info">
+        <div class="search-pickup">
+          <div class="text-1-bld">${document.store.search.rental.pickUpLocation.name}</div>
+
+          <div class="search-pickup-date">
+            ${new Intl.DateTimeFormat('en', {
+              day: '2-digit',
+              month: 'short',
+              year: 'numeric',
+              hour: 'numeric',
+              minute: 'numeric',
+            }).format(document.store.search.rental.pickupDateTime)}
+          </div>
+        </div>
+
+        <div class="search-return">
+          <div class="text-1-bld">${document.store.search.rental.returnLocation.name}</div>
+
+          <div class="search-pickup-date">
+            ${new Intl.DateTimeFormat('en', {
+              day: '2-digit',
+              month: 'short',
+              year: 'numeric',
+              hour: 'numeric',
+              minute: 'numeric',
+            }).format(document.store.search.rental.returnDateTime)}
+          </div>
+        </div>
       </div>
       
-      <div class="vendors"></div>
+      <div class="search-tools">
+        <sort></sort>
+        <filter></filter>
+      </div>
+      
+      <div class="vehicles"></div>
     `;
 
-    let vendorsDOM = '';
+    let vehiclesDOM = '';
     document.store.search.vehicles.availability.map((list, idx) => {
-      vendorsDOM += `<vendor code="${list.vendor.code}" title="${list.vendor.name}" vehicles="${idx}" class="vendor"></vendor>`;
+      vehiclesDOM += `<vehicle
+        code="${list.vendor.code}-${list.info.code}"
+        name="${list.info.model.name}"
+        vehicle="${idx}"
+        class="${list.available ? 'available' : ''}"
+      ></vehicle>`;
     });
 
-    template = template.replace('<div class="vendors"></div>', `<div class="vendors loaded">${vendorsDOM}</div>`);
+    template = template.replace('<div class="vehicles"></div>', `<div class="vehicles">${vehiclesDOM}</div>`);
 
     this.dom.innerHTML = template;
 
-    await createCustomElement(this.dom, 'vendor', Vendor);
+    await createCustomElement(this.dom, 'sort', Sort);
+    await createCustomElement(this.dom, 'filter', Filter);
+    await createCustomElement(this.dom, 'vehicle', Vehicle);
 
     return this.dom;
   }

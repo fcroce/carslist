@@ -12,20 +12,19 @@ export default class VendorAvailability {
     availability.map((availability) => {
       const vehiclesAvailable = availability?.['VehAvails'] ?? [];
 
-      this.availability.push({
-        vendor: new Vendor({
-          code: availability?.['Vendor']?.['@Code'],
-          name: availability?.['Vendor']?.['@Name'],
-        }),
-        vehicles: vehiclesAvailable.map(
-          (vehicle) =>
-            new VehicleAvailability({
-              status: vehicle?.['@Status'],
-              info: vehicle?.['Vehicle'],
-              totalCharge: vehicle?.['TotalCharge'],
-            })
-        ),
-      });
+      vehiclesAvailable.map((vehicle) =>
+        this.availability.push(
+          new VehicleAvailability({
+            vendor: new Vendor({
+              code: availability?.['Vendor']?.['@Code'],
+              name: availability?.['Vendor']?.['@Name'],
+            }),
+            status: vehicle?.['@Status'],
+            info: vehicle?.['Vehicle'],
+            totalCharge: vehicle?.['TotalCharge'],
+          })
+        )
+      );
     });
   }
 }

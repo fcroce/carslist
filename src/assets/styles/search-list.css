@@ -1,13 +1,48 @@
-/* .search-header {} */
+.search-header {
+  padding: 1rem 0 0;
+}
 
-/* .search-pickup {} */
+.search-info {
+  padding: 2rem 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  column-gap: 2rem;
+}
 
-/* .search-pickup div {} */
+.search-pickup {
+  justify-self: start;
+}
 
-/* .vendors:empty {} */
+.search-return {
+  justify-self: end;
+}
+
+@media only screen and (max-width: 680px) {
+  .search-return {
+    justify-self: start;
+  }
+}
+
+.search-pickup-date {
+  padding: 0.5rem 0 0;
+}
+
+.search-tools {
+  padding: 1rem 0 0;
+  display: flex;
+  column-gap: 3rem;
+}
 
 .vendors {
   width: 100%;
+  padding: 2rem 0 0;
 }
 
-/* .vendors.loaded {} */
+.vehicles {
+  width: 100%;
+  padding: 2rem 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  column-gap: 3rem;
+  row-gap: 2rem;
+}

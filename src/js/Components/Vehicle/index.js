@@ -7,19 +7,23 @@ export default class Vehicle extends Component {
     this.rendering();
   }
 
-  click(event) {
+  click() {
     // @TODO - Do something with this event
-    console.log('click event:', event.target.title);
+    console.log('click event:', this.dom.attributes.getNamedItem('code'));
   }
 
   rendering() {
     super.rendering();
 
-    const vehiclesIdx = this.getParam('vehicles');
     const vehicleIdx = this.getParam('vehicle');
-    const vehicle = document.store.search.vehicles.availability[vehiclesIdx].vehicles[vehicleIdx];
+    const vehicle = document.store.search.vehicles.availability[vehicleIdx];
+
+    this.dom.classList.add('vehicle');
 
     this.dom.innerHTML = `
+          <div class="vehicle-name text-1-bld">${vehicle.info.model.name}</div>
+          <div class="vehicle-vendor small-1-reg" vendor-code="${vehicle.vendor.code}">${vehicle.vendor.name}</div>
+
           <img
             class="vehicle-img"
             src="${vehicle.info.pictureURL.resized(300).url}"
@@ -27,23 +31,44 @@ export default class Vehicle extends Component {
             title="${vehicle.info.model.name}"
           />
 
-          <div class="vehicle" code-context="${vehicle.info.codeContext}">
-            <div>Model: ${vehicle.info.model.name}</div>
-          
-            <div>airCondition: ${vehicle.info.airCondition}</div>
-            <div>transmissionType: ${vehicle.info.transmissionType}</div>
-            <div>fuelType: ${vehicle.info.fuelType}</div>
-            <div>driveType: ${vehicle.info.driveType}</div>
-            <div>passengers: ${vehicle.info.passengers}</div>
-            <div>baggageQty: ${vehicle.info.baggageQty}</div>
-            <div>doors: ${vehicle.info.doors}</div>
+          <div class="vehicle-details-container" code-context="${vehicle.info.codeContext}">
+            <div class="vehicle-details">
+                ${vehicle.info.airCondition ? '<p class="veh-air-condition"><span>✔</span> Air Condition</p>' : ''}
+                <p class="veh-transmission-type">Transmission Type: <span>${vehicle.info.transmissionType}</span></p>
+                <p class="veh-fuel-type">Fuel Type: <span>${vehicle.info.fuelType}</span></p>
+                <p class="veh-drive-type">Drive Type: <span>${vehicle.info.driveType}</span></p>
+            </div>
+
+            <div class="vehicle-info">
+                <p class="veh-car-info">
+                  <img class="veh-icons" src="src/assets/svg/car-seat.svg" alt="Car seats" title="Car seats" />
+                  ${vehicle.info.passengers}
+                </p>
+                
+                <p class="veh-car-info">
+                  <img class="veh-icons" src="src/assets/svg/baggage.svg" alt="Baggage" title="Baggage" />
+                  ${vehicle.info.baggageQty}
+                </p>
+                
+                <p class="veh-car-info">
+                  <img class="veh-icons" src="src/assets/svg/car-door.svg" alt="Baggage" title="Baggage" />
+                  ${vehicle.info.doors}
+                </p>
+            </div>
           </div>
           
           <div class="summary">
-            <div>rateTotalAmount: ${vehicle.totalCharge.rateTotalAmount} ${vehicle.totalCharge.currency.symbol}</div>
-            <div>estimatedTotalAmount: ${vehicle.totalCharge.estimatedTotalAmount} ${
-      vehicle.totalCharge.currency.symbol
-    }</div>
+            <div class="summary-price">
+              <span class="text-1-bld">${vehicle.totalCharge.estimatedTotalAmount}</span>
+              <span class="text-1-reg">${vehicle.totalCharge.currency.symbol}</span>
+              <span class="summary-price-rate small-1-reg">
+                Rates: ${vehicle.totalCharge.rateTotalAmount} ${vehicle.totalCharge.currency.symbol}
+              </span>
+            </div>
+
+            <div class="veh-select">
+                <button class="text-1-bld">Select</button>
+            </div>
           </div>
         `;
 
