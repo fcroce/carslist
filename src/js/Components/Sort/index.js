@@ -34,6 +34,6 @@ export default class Sort extends Component {
             </select>
         `;
 
-    return this.dom;
+    return this;
   }
 }

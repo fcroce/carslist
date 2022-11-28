@@ -1,3 +1,5 @@
+import garbageCollector from '../libs/GarbageCollector/index.js';
+
 export default class Component {
   constructor(id, domParent) {
     this.id = id;
@@ -47,6 +49,8 @@ export default class Component {
   change() {}
 
   rendering() {
+    garbageCollector();
+
     this.dom = document.getElementById(`${this.id}`);
 
     if (!this.dom) {
@@ -62,6 +66,6 @@ export default class Component {
 
     this.bindEvents();
 
-    return this.dom;
+    return this;
   }
 }

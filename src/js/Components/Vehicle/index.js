@@ -78,6 +78,6 @@ export default class Vehicle extends Component {
           </div>
         `;
 
-    return this.dom;
+    return this;
   }
 }

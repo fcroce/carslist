@@ -46,6 +46,8 @@ export default async function main() {
       domMain.innerHTML = `<vehicle-details />`;
       await createCustomElement(domMain, 'vehicle-details', VehicleDetails);
     }
+
+    window.dispatchEvent(new Event('page-load'));
   };
   window.history.pushState({}, '', window.location.pathname);
   window.onpopstate();

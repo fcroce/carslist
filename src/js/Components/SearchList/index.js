@@ -97,6 +97,6 @@ export default class SearchList extends Component {
     await createCustomElement(this.dom, 'filter', Filter);
     await createCustomElement(this.dom, 'vehicle', Vehicle);
 
-    return this.dom;
+    return this;
   }
 }

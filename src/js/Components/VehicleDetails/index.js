@@ -82,6 +82,6 @@ export default class VehicleDetails extends Component {
             </div>
         `;
 
-    return this.dom;
+    return this;
   }
 }

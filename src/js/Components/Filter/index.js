@@ -22,6 +22,6 @@ export default class Filter extends Component {
       <div class="filter">Filters</div>
     `;
 
-    return this.dom;
+    return this;
   }
 }
