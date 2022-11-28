@@ -1,5 +1,8 @@
 # carslist
 
+## Install dependencies
+`npm install`
+
 ## Start the server (Node >= 16)
 `npm run build && npm run start`
 
