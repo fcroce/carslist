@@ -64,7 +64,7 @@ export default class SearchList extends Component {
       ></vehicle>`;
     });
 
-    this.dom.innerHTML = `
+    this.updateDom(`
       <div class="search-header title-1-bld">Search Results</div>
 
       <div class="search-info">
@@ -91,7 +91,7 @@ export default class SearchList extends Component {
       </div>
       
       <div class="vehicles">${vehiclesDOM}</div>
-    `;
+    `);
 
     await createCustomElement(this.dom, 'sort', Sort);
     await createCustomElement(this.dom, 'filter', Filter);

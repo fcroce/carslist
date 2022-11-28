@@ -18,21 +18,21 @@ export default class Sort extends Component {
       return false;
     }
 
-    this.dom.innerHTML = `
-            <select name="sort" class="vehicle-sort">
-              <option value="lowest-prices" ${document.store.sort === 'lowest-prices' ? 'selected' : ''}>
-                Sort by Lowest Prices
-              </option>
+    this.updateDom(`
+        <select name="sort" class="vehicle-sort">
+          <option value="lowest-prices" ${document.store.sort === 'lowest-prices' ? 'selected' : ''}>
+            Sort by Lowest Prices
+          </option>
 
-              <option value="highest-prices" ${document.store.sort === 'highest-prices' ? 'selected' : ''}>
-                Sort by Highest Prices
-              </option>
+          <option value="highest-prices" ${document.store.sort === 'highest-prices' ? 'selected' : ''}>
+            Sort by Highest Prices
+          </option>
 
-              <option value="vendor" ${document.store.sort === 'vendor' ? 'selected' : ''}>
-                Sort by Vendor
-              </option>
-            </select>
-        `;
+          <option value="vendor" ${document.store.sort === 'vendor' ? 'selected' : ''}>
+            Sort by Vendor
+          </option>
+        </select>
+    `);
 
     return this;
   }

@@ -48,6 +48,10 @@ export default class Component {
 
   change() {}
 
+  updateDom(dom) {
+    this.dom.innerHTML = dom;
+  }
+
   rendering() {
     garbageCollector();
 

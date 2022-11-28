@@ -18,9 +18,9 @@ export default class Filter extends Component {
       return false;
     }
 
-    this.dom.innerHTML = `
+    this.updateDom(`
       <div class="filter">Filters</div>
-    `;
+    `);
 
     return this;
   }
