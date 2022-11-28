@@ -39,6 +39,16 @@ export default class SearchList extends Component {
     document.store.search = await search();
   }
 
+  formatDates(date) {
+    return new Intl.DateTimeFormat('en', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+    }).format(date);
+  }
+
   async rendering() {
     if (!super.rendering()) {
       return false;
@@ -62,13 +72,7 @@ export default class SearchList extends Component {
           <div class="text-1-bld">${document.store.search.rental.pickUpLocation.name}</div>
 
           <div class="search-pickup-date">
-            ${new Intl.DateTimeFormat('en', {
-              day: '2-digit',
-              month: 'short',
-              year: 'numeric',
-              hour: 'numeric',
-              minute: 'numeric',
-            }).format(document.store.search.rental.pickupDateTime)}
+            ${this.formatDates(document.store.search.rental.pickupDateTime)}
           </div>
         </div>
 
@@ -76,13 +80,7 @@ export default class SearchList extends Component {
           <div class="text-1-bld">${document.store.search.rental.returnLocation.name}</div>
 
           <div class="search-pickup-date">
-            ${new Intl.DateTimeFormat('en', {
-              day: '2-digit',
-              month: 'short',
-              year: 'numeric',
-              hour: 'numeric',
-              minute: 'numeric',
-            }).format(document.store.search.rental.returnDateTime)}
+            ${this.formatDates(document.store.search.rental.returnDateTime)}
           </div>
         </div>
       </div>
