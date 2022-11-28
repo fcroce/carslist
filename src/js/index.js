@@ -11,7 +11,7 @@ export default async function main() {
   };
 
   // Custom elements
-  document.store.elements = {};
+  document.components = {};
 
   // Router
   document.router = {

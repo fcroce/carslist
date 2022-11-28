@@ -17,6 +17,6 @@ export default async function createCustomElement(dom, elName, elClass) {
     const newEl = createElement(element, id);
 
     element.outerHTML = newEl.outerHTML;
-    document.store.elements[id] = await new elClass(id, element);
+    document.components[id] = await new elClass(id, element);
   }
 }

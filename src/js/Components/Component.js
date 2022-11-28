@@ -7,7 +7,7 @@ export default class Component {
   clearDom() {
     Array.from(this.dom.children).map((child) => {
       child.remove();
-      delete document.store.elements[child.id];
+      delete document.components[child.id];
     });
   }
 
