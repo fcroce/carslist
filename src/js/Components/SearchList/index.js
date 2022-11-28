@@ -44,7 +44,17 @@ export default class SearchList extends Component {
       return false;
     }
 
-    let template = `
+    let vehiclesDOM = '';
+    document.store.search.vehicles.availability.map((list, idx) => {
+      vehiclesDOM += `<vehicle
+        code="${list.vendor.code}-${list.info.code}"
+        name="${list.info.model.name}"
+        vehicle="${idx}"
+        class="${list.available ? 'available' : ''}"
+      ></vehicle>`;
+    });
+
+    this.dom.innerHTML = `
       <div class="search-header title-1-bld">Search Results</div>
 
       <div class="search-info">
@@ -82,22 +92,8 @@ export default class SearchList extends Component {
         <filter></filter>
       </div>
       
-      <div class="vehicles"></div>
+      <div class="vehicles">${vehiclesDOM}</div>
     `;
-
-    let vehiclesDOM = '';
-    document.store.search.vehicles.availability.map((list, idx) => {
-      vehiclesDOM += `<vehicle
-        code="${list.vendor.code}-${list.info.code}"
-        name="${list.info.model.name}"
-        vehicle="${idx}"
-        class="${list.available ? 'available' : ''}"
-      ></vehicle>`;
-    });
-
-    template = template.replace('<div class="vehicles"></div>', `<div class="vehicles">${vehiclesDOM}</div>`);
-
-    this.dom.innerHTML = template;
 
     await createCustomElement(this.dom, 'sort', Sort);
     await createCustomElement(this.dom, 'filter', Filter);
